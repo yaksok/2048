@@ -1,0 +1,7 @@
+[submodule "yaksok"]
+	path = yaksok
+	url = https://github.com/yaksok/yaksok
+[submodule "gh-pages"]
+	path = gh-pages
+	url = https://github.com/yaksok/2048
+	branch = gh-pages
