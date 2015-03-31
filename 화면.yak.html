@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/public_html/2048/화면.yak.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="none">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="elflord">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Operator { color: #ff6060; }
+.Comment { color: #008080; }
+.Constant { color: #ff40ff; }
+.Statement { color: #ffff00; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+폰트<span class="Statement">:</span>[
+<span class="Constant">&quot;***  *  *** *** * * *** *   *** *** ***&quot;</span>,
+<span class="Constant">&quot;* *  *    *   * * * *   *     * * * * *&quot;</span>,
+<span class="Constant">&quot;* *  *  *** *** *** *** ***   * *** ***&quot;</span>,
+<span class="Constant">&quot;* *  *  *     *   *   * * *   * * *   *&quot;</span>,
+<span class="Constant">&quot;***  *  *** ***   * *** ***   * ***   *&quot;</span>,
+]
+
+<span class="Statement">약속</span> 가로 세로<span class="Constant">&quot;에&quot;</span> 글자색 숫자 <span class="Constant">&quot;그리기&quot;</span>
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span><span class="Constant">3</span> <span class="Statement">의</span> 가로위치 <span class="Statement">마다</span>
+        <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span><span class="Constant">5</span> <span class="Statement">의</span> 세로위치 <span class="Statement">마다</span>
+            <span class="Statement">만약</span> 폰트[세로위치][숫자<span class="Operator">*</span><span class="Constant">4</span><span class="Operator">+</span>가로위치] = <span class="Constant">&quot;*&quot;</span> <span class="Statement">이면</span>
+                가로<span class="Operator">+</span>가로위치<span class="Operator">-</span><span class="Constant">2</span> 세로<span class="Operator">+</span>세로위치<span class="Operator">-</span><span class="Constant">3</span> 에 글자색 점 찍기
+
+<span class="Comment"># 좌우 여백 2 + 테두리 2 + 글자 크기 4 * 4개 + 홀수로 만들기 위한 1 + 타일간 간격 1</span>
+타일간격<span class="Statement">:</span><span class="Constant">2</span><span class="Operator">+</span><span class="Constant">2</span><span class="Operator">+</span><span class="Constant">4</span><span class="Operator">*</span><span class="Constant">4</span><span class="Operator">+</span><span class="Constant">1</span><span class="Operator">+</span><span class="Constant">1</span>
+하얀색<span class="Statement">:</span>[<span class="Constant">255</span>,<span class="Constant">255</span>,<span class="Constant">255</span>]
+
+<span class="Statement">약속</span> 가로 세로<span class="Constant">&quot;부터&quot;</span> 길이<span class="Constant">&quot;의 가로선 그리기&quot;</span>
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span>길이 <span class="Statement">의</span> 위치 <span class="Statement">마다</span>
+        가로<span class="Operator">+</span>위치<span class="Operator">-</span><span class="Constant">1</span> 세로 에 하얀색 점 찍기
+
+<span class="Statement">약속</span> 가로 세로<span class="Constant">&quot;부터&quot;</span> 길이<span class="Constant">&quot;의 세로선 그리기&quot;</span>
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span>길이 <span class="Statement">의</span> 위치 <span class="Statement">마다</span>
+        가로 세로<span class="Operator">+</span>위치<span class="Operator">-</span><span class="Constant">1</span> 에 하얀색 점 찍기
+
+<span class="Statement">약속</span> 가로 세로<span class="Constant">&quot;에&quot;</span> 숫자 <span class="Constant">&quot;타일 그리기&quot;</span> 커짐 나타남
+    가로<span class="Statement">:</span><span class="Statement">이전</span> 가로<span class="Operator">*</span>타일간격<span class="Operator">+</span><span class="Constant">1</span>
+    세로<span class="Statement">:</span><span class="Statement">이전</span> 세로<span class="Operator">*</span>타일간격<span class="Operator">+</span><span class="Constant">1</span>
+    추가간격<span class="Statement">:</span><span class="Constant">0</span>
+    <span class="Statement">만약</span> 커짐 <span class="Statement">이면</span>
+        추가간격<span class="Statement">:</span><span class="Constant">1</span>
+    <span class="Statement">만약</span> 나타남 <span class="Statement">이면</span>
+        추가간격<span class="Statement">:</span><span class="Operator">-</span><span class="Constant">3</span>
+
+    <span class="Comment"># 사각형 부분 그리기</span>
+    선길이<span class="Statement">:</span>타일간격<span class="Operator">+</span>추가간격<span class="Operator">*</span><span class="Constant">2</span><span class="Operator">-</span><span class="Constant">1</span>
+    가로<span class="Operator">-</span>추가간격            세로<span class="Operator">-</span>추가간격            부터 선길이 의 가로선 그리기
+    가로<span class="Operator">-</span>추가간격            세로<span class="Operator">-</span>추가간격            부터 선길이 의 세로선 그리기
+    가로<span class="Operator">-</span>추가간격            세로<span class="Operator">+</span>추가간격<span class="Operator">+</span>타일간격<span class="Operator">-</span><span class="Constant">2</span> 부터 선길이 의 가로선 그리기
+    가로<span class="Operator">+</span>추가간격<span class="Operator">+</span>타일간격<span class="Operator">-</span><span class="Constant">2</span> 세로<span class="Operator">-</span>추가간격            부터 선길이 의 세로선 그리기
+
+    H<span class="Statement">:</span><span class="Constant">210</span><span class="Operator">+</span><span class="Constant">120</span><span class="Operator">-</span>((로그 숫자)<span class="Operator">-</span><span class="Constant">1</span>)<span class="Operator">*</span><span class="Constant">22</span>
+    <span class="Statement">만약</span> H &lt; <span class="Constant">0</span> <span class="Statement">이면</span>
+        H<span class="Statement">:</span><span class="Constant">0</span>
+    배경색<span class="Statement">:</span>HSV ([H, <span class="Constant">1</span>, <span class="Constant">1</span>]) 에서 RGB로
+    <span class="Statement">만약</span> 숫자 = <span class="Constant">2048</span> <span class="Statement">이면</span>
+        배경색<span class="Statement">:</span>[<span class="Constant">255</span>, <span class="Constant">255</span>, <span class="Constant">0</span>]
+    배경크기<span class="Statement">:</span>타일간격<span class="Operator">+</span>추가간격<span class="Operator">*</span><span class="Constant">2</span><span class="Operator">-</span><span class="Constant">3</span>
+    가로<span class="Operator">-</span>추가간격<span class="Operator">+</span><span class="Constant">1</span> 세로<span class="Operator">-</span>추가간격<span class="Operator">+</span><span class="Constant">1</span> 에 배경크기 배경색 면 칠하기
+    <span class="Statement">만약</span> 나타남 <span class="Statement">이면</span>
+        <span class="Statement">약속</span> <span class="Statement">그만</span>
+
+    <span class="Comment"># 숫자 부분 그리기</span>
+    가로중앙<span class="Statement">:</span>가로 <span class="Operator">+</span> (타일간격<span class="Operator">-</span><span class="Constant">2</span>)<span class="Operator">/</span><span class="Constant">2</span>
+    세로중앙<span class="Statement">:</span>세로 <span class="Operator">+</span> (타일간격<span class="Operator">-</span><span class="Constant">2</span>)<span class="Operator">/</span><span class="Constant">2</span>
+    너비<span class="Statement">:</span> (숫자 문자열로 길이)<span class="Operator">*</span><span class="Constant">4</span>
+    글자위치<span class="Statement">:</span><span class="Constant">0</span>
+    <span class="Statement">반복</span> (숫자 문자열로) <span class="Statement">의</span> 글자 <span class="Statement">마다</span>
+        (가로중앙<span class="Operator">-</span>너비<span class="Operator">/</span><span class="Constant">2</span><span class="Operator">+</span>글자위치<span class="Operator">*</span><span class="Constant">4</span><span class="Operator">+</span><span class="Constant">2</span>) 세로중앙 에 하얀색 (글자 숫자로) 그리기
+        글자위치<span class="Statement">:</span><span class="Statement">이전</span> 글자위치<span class="Operator">+</span><span class="Constant">1</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->

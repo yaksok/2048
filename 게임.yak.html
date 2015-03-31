@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/public_html/2048/게임.yak.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="none">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,expand_tabs,prevent_copy=">
+<meta name="colorscheme" content="elflord">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #ffffff; background-color: #000000; }
+body { font-family: monospace; color: #ffffff; background-color: #000000; }
+* { font-size: 1em; }
+.Operator { color: #ff6060; }
+.Comment { color: #008080; }
+.Constant { color: #ff40ff; }
+.Statement { color: #ffff00; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;빈칸 찾기&quot;</span>
+    빈칸들<span class="Statement">:</span>[]
+    결과<span class="Statement">:</span><span class="Constant">0</span>
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span><span class="Constant">16</span> <span class="Statement">의</span> 위치 <span class="Statement">마다</span>
+        <span class="Statement">만약</span> 판[위치]=<span class="Constant">0</span> <span class="Statement">이면</span>
+            빈칸들 뒤에 위치 추가
+    <span class="Statement">만약</span> (빈칸들 길이) &gt; <span class="Constant">0</span> <span class="Statement">이면</span>
+        결과<span class="Statement">:</span>빈칸들 랜덤 선택
+
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;랜덤 생성&quot;</span>
+    새_숫자<span class="Statement">:</span><span class="Constant">2</span>
+    <span class="Statement">만약</span> (<span class="Constant">1</span><span class="Operator">~</span><span class="Constant">10</span> 랜덤 선택) = <span class="Constant">10</span> <span class="Statement">이면</span>
+        새_숫자<span class="Statement">:</span><span class="Constant">4</span>
+    위치<span class="Statement">:</span>판 빈칸 찾기
+    <span class="Statement">만약</span> 위치 = <span class="Constant">0</span> <span class="Statement">이면</span>
+        결과<span class="Statement">:</span><span class="Constant">거짓</span>
+        <span class="Statement">약속</span> <span class="Statement">그만</span>
+    결과<span class="Statement">:</span><span class="Constant">참</span>
+    판[위치]<span class="Statement">:</span>[새_숫자, [<span class="Operator">-</span><span class="Constant">1</span>]]
+
+<span class="Statement">약속</span> <span class="Constant">&quot;새 게임 준비&quot;</span>
+    <span class="Comment">#결과: [[32768,[-1]],[16384,[-1]],[8192,[-1]],[4096,[-1]], [256,[-1]],[512,[-1]],[1024, [-1]],[2048, [-1]], [128,[-1]],[64,[-1]],[32,[-1]],[16,[-1]], [2,[-1]],[2,[-1]],[4,[-1]],[8,[-1]]]</span>
+    결과<span class="Statement">:</span>[<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>, <span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>, <span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>, <span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>]
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span><span class="Constant">2</span> <span class="Statement">의</span> 숫자 <span class="Statement">마다</span>
+        결과 랜덤 생성
+
+<span class="Statement">약속</span> 판 세로방향 가로방향 <span class="Constant">&quot;이동&quot;</span>
+    결과<span class="Statement">:</span><span class="Constant">거짓</span>
+    합쳐짐<span class="Statement">:</span>[<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>, <span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>, <span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>, <span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>,<span class="Constant">0</span>]
+    순서<span class="Statement">:</span><span class="Constant">1</span><span class="Operator">~</span><span class="Constant">16</span>
+    <span class="Statement">만약</span> 가로방향 &gt; <span class="Constant">0</span> <span class="Statement">또는</span> 세로방향 &gt; <span class="Constant">0</span> <span class="Statement">이면</span>
+        순서<span class="Statement">:</span>순서 뒤집기
+    <span class="Statement">반복</span> 순서 <span class="Statement">의</span> 위치 <span class="Statement">마다</span>
+        <span class="Statement">만약</span> 판[위치] = <span class="Constant">0</span> <span class="Statement">이면</span>
+            <span class="Statement">반복</span> 다시
+        판[위치][<span class="Constant">2</span>]<span class="Statement">:</span> [위치]
+
+        <span class="Comment"># 움직일 블록이 있다</span>
+        다음위치<span class="Statement">:</span>위치
+        합쳐야함<span class="Statement">:</span><span class="Constant">거짓</span>
+
+        가로위치<span class="Statement">:</span>(위치<span class="Operator">-</span><span class="Constant">1</span>)%<span class="Constant">4</span><span class="Operator">+</span><span class="Constant">1</span>
+        세로위치<span class="Statement">:</span>(위치<span class="Operator">-</span>가로위치)<span class="Operator">/</span><span class="Constant">4</span><span class="Operator">+</span><span class="Constant">1</span>
+
+        <span class="Comment"># 이동할 위치를 찾고, 겹쳐져야 하는지 판단</span>
+        <span class="Statement">반복</span>
+            이동할위치<span class="Statement">:</span>다음위치
+            다음위치<span class="Statement">:</span>다음위치 <span class="Operator">+</span> 가로방향 <span class="Operator">+</span> 세로방향<span class="Operator">*</span><span class="Constant">4</span>
+            세로위치<span class="Statement">:</span>세로위치 <span class="Operator">+</span> 세로방향
+            가로위치<span class="Statement">:</span>가로위치 <span class="Operator">+</span> 가로방향
+            <span class="Statement">만약</span> 가로위치 &lt; <span class="Constant">1</span> <span class="Statement">또는</span> 가로위치 &gt; <span class="Constant">4</span> <span class="Statement">이면</span>
+                <span class="Statement">반복</span> <span class="Statement">그만</span>
+            <span class="Statement">만약</span> 세로위치 &lt; <span class="Constant">1</span> <span class="Statement">또는</span> 세로위치 &gt; <span class="Constant">4</span> <span class="Statement">이면</span>
+                <span class="Statement">반복</span> <span class="Statement">그만</span>
+            <span class="Statement">만약</span> 판[다음위치] != <span class="Constant">0</span> <span class="Statement">이면</span>
+                <span class="Statement">만약</span> 합쳐짐[다음위치] = <span class="Constant">0</span> <span class="Statement">이고</span> 판[다음위치][<span class="Constant">1</span>] = 판[위치][<span class="Constant">1</span>] <span class="Statement">이면</span>
+                    합쳐야함<span class="Statement">:</span><span class="Constant">참</span>
+                    합쳐짐[다음위치]<span class="Statement">:</span><span class="Constant">1</span>
+                <span class="Statement">반복</span> <span class="Statement">그만</span>
+
+        <span class="Statement">만약</span> 합쳐야함 <span class="Statement">이면</span>
+            판[위치]<span class="Statement">:</span><span class="Constant">0</span>
+            판[다음위치][<span class="Constant">1</span>]<span class="Statement">:</span>판[다음위치][<span class="Constant">1</span>]<span class="Operator">*</span><span class="Constant">2</span>
+            판[다음위치][<span class="Constant">2</span>] 뒤에 위치 추가
+            결과<span class="Statement">:</span><span class="Constant">참</span>
+        <span class="Statement">아니면서</span> <span class="Statement">만약</span> 위치 != 이동할위치 <span class="Statement">이면</span>
+            판[이동할위치]<span class="Statement">:</span>판[위치]
+            판[이동할위치][<span class="Constant">2</span>]<span class="Statement">:</span>[위치]
+            판[위치]<span class="Statement">:</span><span class="Constant">0</span>
+            결과<span class="Statement">:</span><span class="Constant">참</span>
+
+
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;왼쪽으로&quot;</span>
+    결과<span class="Statement">:</span>판 <span class="Constant">0</span> (<span class="Operator">-</span><span class="Constant">1</span>) 이동
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;오른쪽으로&quot;</span>
+    결과<span class="Statement">:</span>판 <span class="Constant">0</span> <span class="Constant">1</span> 이동
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;위로&quot;</span>
+    결과<span class="Statement">:</span>판 (<span class="Operator">-</span><span class="Constant">1</span>) <span class="Constant">0</span> 이동
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;아래로&quot;</span>
+    결과<span class="Statement">:</span>판 <span class="Constant">1</span> <span class="Constant">0</span> 이동
+
+<span class="Statement">약속</span> 판 <span class="Constant">&quot;출력&quot;</span>
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span><span class="Constant">4</span> <span class="Statement">의</span> 줄 <span class="Statement">마다</span>
+        판[(줄<span class="Operator">-</span><span class="Constant">1</span>)<span class="Operator">*</span><span class="Constant">4</span><span class="Operator">+</span><span class="Constant">1</span><span class="Operator">~</span>줄<span class="Operator">*</span><span class="Constant">4</span>] 보여주기
+    <span class="Constant">&quot;&quot;</span> 보여주기
+
+<span class="Statement">약속</span> <span class="Constant">&quot;테스트&quot;</span>
+    판<span class="Statement">:</span>새 게임 준비
+
+    판 출력
+
+    <span class="Statement">반복</span> <span class="Constant">1</span><span class="Operator">~</span><span class="Constant">100</span> <span class="Statement">의</span> 숫자 <span class="Statement">마다</span>
+        아무것도안함<span class="Statement">:</span><span class="Constant">참</span>
+        <span class="Statement">만약</span> (판 왼쪽으로) <span class="Statement">이면</span>
+            <span class="Constant">&quot;왼&quot;</span> 보여주기
+            판 랜덤 생성
+            판 출력
+            아무것도안함<span class="Statement">:</span><span class="Constant">거짓</span>
+
+        <span class="Statement">만약</span> (판 아래로) <span class="Statement">이면</span>
+            <span class="Constant">&quot;아&quot;</span> 보여주기
+            판 랜덤 생성
+            판 출력
+            아무것도안함<span class="Statement">:</span><span class="Constant">거짓</span>
+
+        <span class="Statement">만약</span> 아무것도안함 <span class="Statement">이면</span>
+            <span class="Statement">만약</span> (판 오른쪽으로) <span class="Statement">이면</span>
+                <span class="Constant">&quot;오&quot;</span> 보여주기
+                판 랜덤 생성
+                판 출력
+                아무것도안함<span class="Statement">:</span><span class="Constant">거짓</span>
+
+        <span class="Statement">만약</span> 아무것도안함 <span class="Statement">이면</span>
+            <span class="Statement">만약</span> (판 위로) <span class="Statement">이면</span>
+                <span class="Constant">&quot;위&quot;</span> 보여주기
+                판 랜덤 생성
+                판 출력
+                아무것도안함<span class="Statement">:</span><span class="Constant">거짓</span>
+
+
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
